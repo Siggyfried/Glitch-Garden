@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class LivesDisplay : MonoBehaviour
 {
-    [SerializeField] private int lives = 5;
+    [SerializeField] float baseLives = 3;
+    private float lives;
     [SerializeField] private int damage = 1;
     private Text livesText;
 
   
     void Start()
     {
+        lives = baseLives - PlayerPrefsController.GetDifficulty();
         livesText = GetComponent<Text>();
         UpdateDisplay();
+        Debug.Log("Difficulty setting currently is " + PlayerPrefsController.GetDifficulty());
     }
 
     private void UpdateDisplay()
